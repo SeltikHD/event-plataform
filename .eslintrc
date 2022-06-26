@@ -1,4 +1,9 @@
 {
+    "env": {
+        "browser": true,
+        "amd": true,
+        "node": true
+    },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
@@ -7,6 +12,7 @@
         "plugin:import/typescript",
         "plugin:react/jsx-runtime",
         "plugin:prettier/recommended",
+        "plugin:tailwindcss/recommended",
         "prettier"
     ],
     "parser": "@typescript-eslint/parser",
@@ -17,7 +23,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "import", "jsx-a11y", "react-hooks", "prettier"],
+    "plugins": ["react", "@typescript-eslint", "import", "jsx-a11y", "react-hooks", "prettier", "tailwindcss"],
     "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
