@@ -1,26 +1,24 @@
 import { CheckCircle, Lock } from 'phosphor-react';
 import { isPast, format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 export interface LessonProps {
-    id: string;
     title: string;
     slug: string;
-    description: string;
-    videoId: string;
     availableAt: string;
     lessonType: 'live' | 'class';
 }
 
-export default function Lesson({ title, availableAt, lessonType }: LessonProps) {
+export default function Lesson({ title, availableAt, lessonType, slug }: LessonProps) {
     const availableDate = new Date(availableAt);
     const availableLesson = isPast(availableDate);
     const formattedDate = format(availableDate, `EEEE' • 'd' de 'MMMM' • 'k'h'mm`);
 
     return (
-        <a href="https://github.com/">
+        <Link to={`/event/lesson/${slug}`} className="group">
             <span className="text-gray-300">{formattedDate}</span>
 
-            <div className="p-4 mt-2 rounded border border-gray-500">
+            <div className="p-4 mt-2 rounded border border-gray-500 group-hover:border-green-500">
                 <header className="flex justify-between items-center">
                     {availableLesson ? (
                         <span className="flex gap-2 items-center text-sm font-medium text-blue-500">
@@ -35,12 +33,12 @@ export default function Lesson({ title, availableAt, lessonType }: LessonProps) 
                     )}
 
                     <span className="py-[2px] px-2 text-xs font-bold text-white rounded border border-green-300">
-                        {lessonType === 'live' ? 'AO VIVO' : 'AULA PRÁTICA'}
+                        {lessonType === 'live' ? 'LIVE' : 'PRACTICAL CLASS'}
                     </span>
                 </header>
 
                 <strong className="block mt-5 text-gray-200">{title}</strong>
             </div>
-        </a>
+        </Link>
     );
 }
