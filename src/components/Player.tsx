@@ -79,14 +79,14 @@ export default function Player({ lessonSlug }: PlayerProps) {
 
                     <div className="flex flex-col gap-4 min-w-full md:mt-0 md:min-w-0">
                         <a
-                            href="http://localhost.com:3000"
+                            href="https://discord.gg/ybQnP4C4qS"
                             className="flex gap-2 justify-center items-center p-4 text-sm font-bold uppercase bg-green-500 hover:bg-green-700 rounded transition-colors"
                         >
                             <DiscordLogo size={24} />
                             Discord community
                         </a>
                         <a
-                            href="http://localhost.com:3000"
+                            href="https://github.com/Rocketseat"
                             className="flex gap-2 justify-center items-center p-4 text-sm font-bold text-blue-500 hover:text-gray-900 uppercase hover:bg-blue-500 rounded border border-blue-500 transition-colors"
                         >
                             <Lightning size={24} />

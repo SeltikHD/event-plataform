@@ -1,6 +1,7 @@
 import Lesson, { type LessonProps } from '@/components/Lesson';
 import { TextAlignJustify, X } from 'phosphor-react';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 export default function Sidebar({ lessons }: { lessons?: LessonProps[] }) {
     const [open, setOpen] = useState(false);
@@ -18,9 +19,10 @@ export default function Sidebar({ lessons }: { lessons?: LessonProps[] }) {
                 )}
             </button>
             <aside
-                className={`${
-                    open ? 'visible' : 'invisible'
-                } fixed top-[4.7rem] max-h-[181vh] overflow-y-auto z-20 p-6 min-w-[100vw] min-h-screen bg-gray-700 border-l border-b border-gray-600 lg:relative lg:top-0 lg:w-[348px] lg:min-w-[348px] lg:visible`}
+                className={classNames(
+                    'fixed top-[4.7rem] max-h-[181vh] overflow-y-auto z-20 p-6 min-w-[100vw] min-h-screen bg-gray-700 border-l border-b border-gray-600 lg:relative lg:top-0 lg:w-[348px] lg:min-w-[348px] lg:visible',
+                    { visible: open, invisible: !open },
+                )}
             >
                 <span className="block pb-6 text-2xl font-bold border-b border-gray-500">Schedule</span>
                 <div className="flex flex-col gap-8 mt-6">
