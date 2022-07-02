@@ -35,4 +35,4 @@ yarn prepare
 
 ## Preview
 
-### **_Coming soon..._**
+### [Vercel](https://event-plataform-lac.vercel.app/)

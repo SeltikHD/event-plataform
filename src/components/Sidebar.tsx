@@ -1,9 +1,10 @@
-import Lesson, { type LessonProps } from '@/components/Lesson';
+import type { GetLessonsQuery } from '@/graphql/generated';
 import { TextAlignJustify, X } from 'phosphor-react';
 import { useState } from 'react';
+import Lesson from '@/components/Lesson';
 import classNames from 'classnames';
 
-export default function Sidebar({ lessons }: { lessons?: LessonProps[] }) {
+export default function Sidebar({ lessons }: GetLessonsQuery) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -24,8 +25,8 @@ export default function Sidebar({ lessons }: { lessons?: LessonProps[] }) {
                     { visible: open, invisible: !open },
                 )}
             >
-                <span className="block pb-6 text-2xl font-bold border-b border-gray-500">Schedule</span>
-                <div className="flex flex-col gap-8 mt-6">
+                <span className="block border-b border-gray-500 pb-6 text-2xl font-bold">Schedule</span>
+                <div className="mt-6 flex flex-col gap-8">
                     {lessons?.map((lesson, i) => (
                         <Lesson {...lesson} key={i} />
                     ))}

@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "robots.txt",
+            "destination": "/robots.txt"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/"
+        }
+    ]
+}

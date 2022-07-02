@@ -1,24 +1,21 @@
-import { useState, FormEvent } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useState, FormEvent, useEffect } from 'react';
+import { useCreateSubscriberMutation } from '@/graphql/generated';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
-
-const CREATE_SUBSCRIBER_MUTATION = gql`
-    mutation CreateSubscriber($name: String!, $email: String!) {
-        createSubscriber(data: { name: $name, email: $email }) {
-            id
-        }
-    }
-`;
+import codeMockup from '/assets/code-mockup.png';
 
 export default function Subscribe() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [formError, setFormError] = useState([false, false]);
 
-    const [createSubscriber, { error, loading }] = useMutation(CREATE_SUBSCRIBER_MUTATION);
+    const [createSubscriber, { error, loading }] = useCreateSubscriberMutation();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = 'Event - Subscribe';
+    }, []);
 
     const handleSubscribe = async (e: FormEvent) => {
         e.preventDefault();
@@ -30,9 +27,9 @@ export default function Subscribe() {
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-no-repeat bg-cover bg-blur">
-            <div className="flex z-10 flex-col justify-between items-center mx-auto w-full max-w-[1100px] h-screen lg:flex-row">
-                <div className="p-6 max-w-[640px] bg-gradient-to-r from-transparent to-gray-700 lg:from-gray-500/75 lg:to-transparent lg:rounded-3xl">
+        <div className="flex min-h-screen flex-col items-center bg-blur bg-cover bg-no-repeat">
+            <div className="z-10 mx-auto flex h-[70vh] w-full max-w-[1100px] flex-col items-center justify-between lg:h-screen lg:flex-row">
+                <div className="max-w-[640px] bg-gradient-to-r from-transparent to-transparent p-6 lg:rounded-3xl lg:from-gray-500/75 lg:to-transparent">
                     <Logo />
 
                     <h1 className="mt-8 text-[2.5rem] leading-tight">
@@ -45,14 +42,14 @@ export default function Subscribe() {
                     </p>
                 </div>
 
-                <div className="flex flex-col items-center p-8 w-full bg-gray-700 border border-gray-500 lg:w-auto lg:rounded">
-                    <strong className="block mb-6 text-2xl">Sign up for free</strong>
+                <div className="flex w-full flex-col items-center border border-gray-500 bg-gray-700 p-8 lg:w-auto lg:rounded">
+                    <strong className="mb-6 block text-2xl">Sign up for free</strong>
 
-                    <form onSubmit={handleSubscribe} className="flex flex-col gap-2 items-center w-full">
+                    <form onSubmit={handleSubscribe} className="flex w-full flex-col items-center gap-2">
                         <input
                             type="text"
                             placeholder="Your complete name"
-                            className={`px-5 h-14 w-full bg-gray-900 rounded border ${
+                            className={`h-14 w-full rounded border bg-gray-900 px-5 ${
                                 formError[0] ? 'border-red-600' : 'border-gray-900'
                             }`}
                             onChange={e => setName(e.target.value)}
@@ -60,7 +57,7 @@ export default function Subscribe() {
                         <input
                             type="email"
                             placeholder="Your best email"
-                            className={`px-5 h-14 w-full bg-gray-900 rounded border ${
+                            className={`h-14 w-full rounded border bg-gray-900 px-5 ${
                                 formError[1] || !!error ? 'border-red-600' : 'border-gray-900'
                             }`}
                             onChange={e => setEmail(e.target.value)}
@@ -78,7 +75,7 @@ export default function Subscribe() {
 
                         <button
                             type="submit"
-                            className="py-4 mt-4 w-full text-sm font-bold uppercase bg-green-500 hover:bg-green-700 rounded disabled:opacity-50 transition-colors"
+                            className="mt-4 w-full rounded bg-green-500 py-4 text-sm font-bold uppercase transition-colors hover:bg-green-700 disabled:opacity-50"
                             disabled={loading}
                         >
                             Secure my spot
@@ -87,11 +84,7 @@ export default function Subscribe() {
                 </div>
             </div>
 
-            <img
-                src="/src/assets/code-mockup.png"
-                className="relative z-0 mt-12 max-h-screen lg:absolute lg:mt-0"
-                alt="Code Mockup"
-            />
+            <img src={codeMockup} className="relative z-0 mt-12 max-h-screen lg:absolute lg:mt-0" alt="Code Mockup" />
         </div>
     );
 }

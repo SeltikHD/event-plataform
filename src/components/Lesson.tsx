@@ -30,7 +30,7 @@ export default function Lesson({ title, availableAt, lessonType, slug }: LessonP
                     'group-hover:border-green-500': !isActive,
                 })}
             >
-                <header className="flex justify-between items-center">
+                <header className="flex items-center justify-between">
                     {availableLesson ? (
                         <span
                             className={classNames('flex gap-2 items-center text-sm font-medium', {
@@ -42,7 +42,7 @@ export default function Lesson({ title, availableAt, lessonType, slug }: LessonP
                             Released content
                         </span>
                     ) : (
-                        <span className="flex gap-2 items-center text-sm font-medium text-orange-500">
+                        <span className="flex items-center gap-2 text-sm font-medium text-orange-500">
                             <Lock size={20} />
                             Coming soon
                         </span>

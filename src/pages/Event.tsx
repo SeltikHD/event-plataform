@@ -1,30 +1,23 @@
-import type { LessonProps as Lesson } from '@/components/Lesson';
 import Header from '@/components/Header';
 import Player from '@/components/Player';
 import Sidebar from '@/components/Sidebar';
-import { gql, useQuery } from '@apollo/client';
 import { Navigate, useParams } from 'react-router-dom';
-
-const GET_LESSONS_QUERY = gql`
-    query {
-        lessons(orderBy: availableAt_ASC, stage: PUBLISHED) {
-            title
-            slug
-            availableAt
-            lessonType
-        }
-    }
-`;
+import { useGetLessonsQuery } from '@/graphql/generated';
+import { useEffect } from 'react';
 
 export default function Event() {
-    const { data } = useQuery<{ lessons: Lesson[] }>(GET_LESSONS_QUERY);
+    const { data } = useGetLessonsQuery();
     const { slug } = useParams<{ slug: string }>();
 
+    useEffect(() => {
+        document.title = 'Event - Contents';
+    }, []);
+
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex flex-1 mt-[4.7rem] lg:mt-0">
-                <Sidebar lessons={data?.lessons} />
+            <main className="mt-[4.7rem] flex flex-1 lg:mt-0">
+                {data && <Sidebar lessons={data.lessons} />}
                 {slug ? (
                     <Player lessonSlug={slug} />
                 ) : (

@@ -24,3 +24,14 @@ dist-ssr
 
 #Env files
 *.env*
+
+#CodeGen files
+*codegen.yml
+
+<<<<<<< HEAD
+#TSBuildInfo files
+*/tsconfig.tsbuildinfo
+=======
+#TSBuildInfo
+**/tsconfig.tsbuildinfo
+>>>>>>> 8f0c0e7c9140cf5ca3707b00cbdc21246c7bd758

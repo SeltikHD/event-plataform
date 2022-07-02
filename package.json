@@ -11,7 +11,8 @@
         "prettier": "prettier src --check",
         "prettier:fix": "prettier --write",
         "prettier:fix-all": "yarn prettier:fix ./",
-        "format-lint": "yarn prettier:fix ./ && yarn lint:fix ./"
+        "format-lint": "yarn prettier:fix ./ && yarn lint:fix ./",
+        "codegen": "graphql-codegen"
     },
     "dependencies": {
         "@apollo/client": "^3.6.9",
@@ -26,28 +27,33 @@
         "react-router-dom": "^6.3.0"
     },
     "devDependencies": {
+        "@graphql-codegen/cli": "^2.6.4",
+        "@graphql-codegen/typescript": "^2.5.1",
+        "@graphql-codegen/typescript-operations": "^2.4.2",
+        "@graphql-codegen/typescript-react-apollo": "^3.2.16",
         "@types/classnames": "^2.3.1",
         "@types/node": "^18.0.0",
         "@types/react": "^18.0.14",
         "@types/react-dom": "^18.0.5",
-        "@typescript-eslint/eslint-plugin": "^5.29.0",
-        "@typescript-eslint/parser": "^5.29.0",
+        "@typescript-eslint/eslint-plugin": "^5.30.3",
+        "@typescript-eslint/parser": "^5.30.3",
         "@vitejs/plugin-react": "^1.3.2",
         "autoprefixer": "^10.4.7",
         "eslint": "^8.18.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-jsx-a11y": "^6.6.0",
-        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.30.1",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-tailwindcss": "^3.5.2",
+        "eslint-plugin-tailwindcss": "^3.6.0",
         "postcss": "^8.4.14",
         "prettier": "^2.7.1",
         "tailwind-scrollbar": "^1.3.1",
         "tailwindcss": "^3.1.4",
         "typescript": "^4.7.4",
-        "vite": "^2.9.12",
+        "vite": "^2.9.13",
+        "vite-plugin-pwa": "^0.12.2",
         "vite-tsconfig-paths": "^3.5.0"
     }
 }
